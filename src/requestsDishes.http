@@ -1,3 +1,7 @@
+### =========================
+### DISHES
+### =========================
+
 ### Get all dishes
 GET http://localhost:8080/api/v1/dishes
 
@@ -8,13 +12,13 @@ GET http://localhost:8080/api/v1/dishes/1
 
 ###
 
-### Create dish 1
+### Create dish - Pizza Carbonara
 POST http://localhost:8080/api/v1/dishes
 Content-Type: application/json
 
 {
   "name": "Pizza Carbonara",
-  "description": "Pizza con mozzarella, bacon y salsa carbonara",
+  "description": "Pizza with mozzarella, bacon and carbonara sauce",
   "price": 12.50,
   "available": true,
   "categoryId": 1
@@ -22,65 +26,41 @@ Content-Type: application/json
 
 ###
 
-### Create dish 2
+### Create dish - Double Bacon Burger
 POST http://localhost:8080/api/v1/dishes
 Content-Type: application/json
 
 {
-  "name": "Cheeseburger Deluxe",
-  "description": "Hamburguesa de ternera con queso cheddar, lechuga y salsa especial",
-  "price": 10.90,
-  "available": true
+  "name": "Double Bacon Burger",
+  "description": "Double beef burger with cheddar and crispy bacon",
+  "price": 13.90,
+  "available": true,
+  "categoryId": 2
 }
 
 ###
 
-### Create dish 3
+### Create dish - Caesar Salad
 POST http://localhost:8080/api/v1/dishes
 Content-Type: application/json
 
 {
   "name": "Caesar Salad",
-  "description": "Ensalada César con pollo, parmesano, croutons y salsa césar",
-  "price": 8.75,
-  "available": true
-}
-
-###
-
-### Create dish 4
-POST http://localhost:8080/api/v1/dishes
-Content-Type: application/json
-
-{
-  "name": "Spaghetti Bolognese",
-  "description": "Espaguetis con salsa boloñesa casera y parmesano",
-  "price": 11.40,
-  "available": true
-}
-
-###
-
-### Create dish 5
-POST http://localhost:8080/api/v1/dishes
-Content-Type: application/json
-
-{
-  "name": "Tiramisu",
-  "description": "Postre italiano con mascarpone, café y cacao",
-  "price": 5.95,
-  "available": false
+  "description": "Caesar salad with chicken, parmesan and croutons",
+  "price": 9.75,
+  "available": true,
+  "categoryId": 3
 }
 
 ###
 
 ### Update dish 1
-PUT http://localhost:8080/api/v1/dishes/1
+PUT http://localhost:8080/api/v1/dishes/2
 Content-Type: application/json
 
 {
   "name": "Pizza Carbonara XL",
-  "description": "Pizza grande con mozzarella, bacon extra y salsa carbonara",
+  "description": "Large pizza with mozzarella, extra bacon and carbonara sauce",
   "price": 14.20,
   "available": true,
   "categoryId": 1
@@ -88,5 +68,51 @@ Content-Type: application/json
 
 ###
 
-### Delete dish 5
-DELETE http://localhost:8080/api/v1/dishes/5
+### Change dish category
+PUT http://localhost:8080/api/v1/dishes/3
+Content-Type: application/json
+
+{
+  "name": "Double Bacon Burger Deluxe",
+  "description": "Burger with extra cheddar, crispy bacon and house sauce",
+  "price": 15.40,
+  "available": true,
+  "categoryId": 1
+}
+
+###
+
+### Create invalid dish - missing categoryId
+POST http://localhost:8080/api/v1/dishes
+Content-Type: application/json
+
+{
+  "name": "Broken Dish",
+  "description": "This should fail",
+  "price": 10.00,
+  "available": true
+}
+
+###
+
+### Create invalid dish - negative price
+POST http://localhost:8080/api/v1/dishes
+Content-Type: application/json
+
+{
+  "name": "Invalid Price Dish",
+  "description": "This should fail because price is negative",
+  "price": -5.00,
+  "available": true,
+  "categoryId": 1
+}
+
+###
+
+### Get dish not found
+GET http://localhost:8080/api/v1/dishes/999
+
+###
+
+### Delete dish 3
+DELETE http://localhost:8080/api/v1/dishes/1

@@ -10,17 +10,17 @@ import java.math.BigDecimal;
 
 public class DishRequest {
 
-    @NotBlank
+    @NotBlank(message = "Name can't be null or empty")
     private String name;
 
     @Size(max = 200)
     private String description;
-    @NotNull
-    @Positive
+    @NotNull(message = "Price can't be null or empty")
+    @Positive(message = "Price must greater than 0")
     private BigDecimal price;
-    @NotNull
+    @NotNull(message = "available can't be null or empty")
     private Boolean available;
-    @NotNull
+    @NotNull(message = "CategoryId can't be null or empty")
     private Integer categoryId;
     
     public Integer getCategoryId() {

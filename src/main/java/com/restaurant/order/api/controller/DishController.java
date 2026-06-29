@@ -5,6 +5,8 @@ import com.restaurant.order.api.dto.response.DishResponse;
 import com.restaurant.order.api.entity.Dish;
 import com.restaurant.order.api.service.DishService;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -36,24 +38,28 @@ public class DishController {
     POST
      */
     @PostMapping
-    public DishResponse newDish( @Valid @RequestBody DishRequest request ){
+    public ResponseEntity<DishResponse> newDish( @Valid @RequestBody DishRequest request ){
 
-        return dishService.newDish(request);
+        DishResponse response = dishService.newDish(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     /*
     PUT
      */
     @PutMapping("/{id}")
-    public DishResponse updateDish(@PathVariable Integer id,  @Valid @RequestBody DishRequest changedDish){
-    return dishService.updateDish(changedDish,id);
+    public ResponseEntity<DishResponse> updateDish(@PathVariable Integer id,  @Valid @RequestBody DishRequest changedDish){
+     DishResponse response = dishService.updateDish(changedDish,id);
+     return ResponseEntity.ok(response);
     }
 
     /*
     DELETE
      */
     @DeleteMapping("/{id}")
-    public void deleteDish(@PathVariable Integer id){
+    public ResponseEntity<Void> deleteDish(@PathVariable Integer id){
+
         dishService.deleteDish(id);
+        return ResponseEntity.noContent().build();
     }
 }

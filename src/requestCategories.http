@@ -1,3 +1,7 @@
+### =========================
+### CATEGORIES
+### =========================
+
 ### Get all categories
 GET http://localhost:8080/api/v1/categories
 
@@ -8,7 +12,7 @@ GET http://localhost:8080/api/v1/categories/1
 
 ###
 
-### Create category
+### Create category - Pizzas
 POST http://localhost:8080/api/v1/categories
 Content-Type: application/json
 
@@ -19,16 +23,55 @@ Content-Type: application/json
 
 ###
 
-### Update category
-PUT http://localhost:8080/api/v1/categories/1
+### Create category - Burgers
+POST http://localhost:8080/api/v1/categories
 Content-Type: application/json
 
 {
   "name": "Burgers",
-  "description": "Beef burgers, chicken burgers and sides"
+  "description": "Big smash burgers with extra bacon"
 }
 
 ###
 
-### Delete category
-DELETE http://localhost:8080/api/v1/categories/1
+### Create category - Salads
+POST http://localhost:8080/api/v1/categories
+Content-Type: application/json
+
+{
+  "name": "Salads",
+  "description": "Fresh salads with chicken, cheese and vegetables"
+}
+
+###
+
+### Update category 1
+PUT http://localhost:8080/api/v1/categories/1
+Content-Type: application/json
+
+{
+  "name": "Premium Pizzas",
+  "description": "Italian pizzas with premium ingredients"
+}
+
+###
+
+### Create invalid category
+POST http://localhost:8080/api/v1/categories
+Content-Type: application/json
+
+{
+  "name": "",
+  "description": "This request should fail because name is blank"
+}
+
+###
+
+### Get category not found
+GET http://localhost:8080/api/v1/categories/999
+
+###
+
+### Delete category 3
+DELETE http://localhost:8080/api/v1/categories/3
+
