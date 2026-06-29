@@ -1,0 +1,92 @@
+### Get all dishes
+GET http://localhost:8080/api/v1/dishes
+
+###
+
+### Get dish by id
+GET http://localhost:8080/api/v1/dishes/1
+
+###
+
+### Create dish 1
+POST http://localhost:8080/api/v1/dishes
+Content-Type: application/json
+
+{
+  "name": "Pizza Carbonara",
+  "description": "Pizza con mozzarella, bacon y salsa carbonara",
+  "price": 12.50,
+  "available": true,
+  "categoryId": 1
+}
+
+###
+
+### Create dish 2
+POST http://localhost:8080/api/v1/dishes
+Content-Type: application/json
+
+{
+  "name": "Cheeseburger Deluxe",
+  "description": "Hamburguesa de ternera con queso cheddar, lechuga y salsa especial",
+  "price": 10.90,
+  "available": true
+}
+
+###
+
+### Create dish 3
+POST http://localhost:8080/api/v1/dishes
+Content-Type: application/json
+
+{
+  "name": "Caesar Salad",
+  "description": "Ensalada César con pollo, parmesano, croutons y salsa césar",
+  "price": 8.75,
+  "available": true
+}
+
+###
+
+### Create dish 4
+POST http://localhost:8080/api/v1/dishes
+Content-Type: application/json
+
+{
+  "name": "Spaghetti Bolognese",
+  "description": "Espaguetis con salsa boloñesa casera y parmesano",
+  "price": 11.40,
+  "available": true
+}
+
+###
+
+### Create dish 5
+POST http://localhost:8080/api/v1/dishes
+Content-Type: application/json
+
+{
+  "name": "Tiramisu",
+  "description": "Postre italiano con mascarpone, café y cacao",
+  "price": 5.95,
+  "available": false
+}
+
+###
+
+### Update dish 1
+PUT http://localhost:8080/api/v1/dishes/1
+Content-Type: application/json
+
+{
+  "name": "Pizza Carbonara XL",
+  "description": "Pizza grande con mozzarella, bacon extra y salsa carbonara",
+  "price": 14.20,
+  "available": true,
+  "categoryId": 1
+}
+
+###
+
+### Delete dish 5
+DELETE http://localhost:8080/api/v1/dishes/5
