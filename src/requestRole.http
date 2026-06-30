@@ -1,0 +1,22 @@
+### Create role - ADMIN
+POST http://localhost:8080/api/v1/roles
+Content-Type: application/json
+
+{
+  "name": "ADMIN"
+}
+
+###
+
+### Create role - CUSTOMER
+POST http://localhost:8080/api/v1/roles
+Content-Type: application/json
+
+{
+  "name": "CUSTOMER"
+}
+
+###
+
+### Get all roles
+GET http://localhost:8080/api/v1/roles
