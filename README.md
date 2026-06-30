@@ -1,53 +1,146 @@
 # Food Ordering API
 
-Production-style REST API for a food ordering system built with **Java 21**, **Spring Boot**, **Spring Data JPA**, **Spring Validation** and **PostgreSQL**.
+Backend portfolio project built with **Java**, **Spring Boot**, **PostgreSQL**, and **Spring Security**.
 
-This project is being developed as a backend portfolio project focused on demonstrating skills that are commonly required for **Java Backend Developer** roles.
+This application simulates the backend of a food ordering platform and was developed to demonstrate practical backend skills such as:
 
-## Current features
+* designing REST APIs
+* building layered Spring Boot applications
+* working with relational databases and JPA relationships
+* validating requests and handling errors cleanly
+* writing service unit tests
+* implementing authentication with Spring Security
+* generating JWT tokens for login
 
-* CRUD for **dishes**
-* CRUD for **categories**
-* Validation with `@Valid`
-* Global exception handling with `@RestControllerAdvice`
-* Relational mapping between **Dish** and **Category**
-* PostgreSQL integration with Spring Data JPA
+---
 
-## Tech stack
+## Why this project
 
-* Java 21
-* Spring Boot
-* Spring Web
-* Spring Data JPA
-* Spring Validation
-* PostgreSQL
-* Maven
+The goal of this project is to showcase hands-on backend development skills through a realistic API, not just isolated coding exercises.
 
-## Domain model
+It reflects the kind of work involved in junior backend development roles, including:
 
-Current entities:
+* CRUD operations
+* DTO-based architecture
+* database relationships
+* validation and exception handling
+* testable service logic
+* authentication and security fundamentals
 
-* **Category**
+---
 
-  * `id`
-  * `name`
-  * `description`
+## Tech Stack
 
-* **Dish**
+* **Java**
+* **Spring Boot**
+* **Spring Web**
+* **Spring Data JPA**
+* **Spring Security**
+* **PostgreSQL**
+* **Hibernate**
+* **Maven**
+* **JUnit 5**
+* **Mockito**
+* **JWT (JJWT)**
 
-  * `id`
-  * `name`
-  * `description`
-  * `price`
-  * `available`
-  * `category`
+---
 
-Relationship:
+## Main Features
 
-* One **Category** can contain many **Dishes**
-* One **Dish** belongs to one **Category**
+### Category Management
 
-## API endpoints
+* Create categories
+* Retrieve all categories
+* Retrieve category by id
+* Update categories
+* Delete categories
+
+### Dish Management
+
+* Create dishes
+* Retrieve all dishes
+* Retrieve dish by id
+* Update dishes
+* Delete dishes
+* Assign dishes to categories
+
+### Role Management
+
+* Create roles
+* Retrieve all roles
+* Retrieve role by id
+
+### User Management
+
+* Create users
+* Retrieve all users
+* Retrieve user by id
+* Assign roles to users
+* Store passwords securely with BCrypt
+
+### Authentication
+
+* Login with username and password
+* Validate credentials against database users
+* Generate JWT token on successful login
+
+---
+
+## Database Design
+
+The project includes relational modeling with JPA/Hibernate:
+
+* **Dish -> Category** (`ManyToOne`)
+* **AppUser -> Role** (`ManyToMany`)
+
+This helps demonstrate practical knowledge of entity relationships and database structure design.
+
+---
+
+## API Design Highlights
+
+This project follows common backend best practices such as:
+
+* separation between entity, DTO, repository, service, and controller layers
+* request validation with `jakarta.validation`
+* centralized exception handling with `@RestControllerAdvice`
+* API responses based on DTOs instead of exposing entities directly
+* clean service methods with focused responsibilities
+
+---
+
+## Testing
+
+The service layer includes **unit tests** built with:
+
+* **JUnit 5**
+* **Mockito**
+
+These tests cover:
+
+* successful service operations
+* not found scenarios
+* update and delete flows
+* related entity validation
+
+This was added to demonstrate not only implementation skills, but also code reliability and testability.
+
+---
+
+## Security
+
+The application includes the foundations of backend security:
+
+* custom `UserDetailsService`
+* BCrypt password encoding
+* login with Spring Security
+* JWT generation after successful authentication
+
+This project is being developed step by step to understand the security flow in depth rather than relying only on automatic configuration.
+
+---
+
+## Example Endpoints
 
 ### Categories
 
@@ -65,117 +158,110 @@ Relationship:
 * `PUT /api/v1/dishes/{id}`
 * `DELETE /api/v1/dishes/{id}`
 
-## Example requests
+### Roles
 
-### Create category
+* `GET /api/v1/roles`
+* `GET /api/v1/roles/{id}`
+* `POST /api/v1/roles`
 
-```http
-POST /api/v1/categories
-Content-Type: application/json
+### Users
 
+* `GET /api/v1/users`
+* `GET /api/v1/users/{id}`
+* `POST /api/v1/users`
+
+### Authentication
+
+* `POST /api/v1/auth/login`
+
+---
+
+## Example Requests
+
+### Create User
+
+```json id="mk4y06"
 {
-  "name": "Pizzas",
-  "description": "Italian pizzas and baked dishes"
+  "username": "pedro",
+  "email": "pedro@example.com",
+  "password": "test123",
+  "enabled": true,
+  "roleIds": [1, 2]
 }
 ```
 
-### Create dish
+### Login
 
-```http
-POST /api/v1/dishes
-Content-Type: application/json
-
+```json id="qmyrtf"
 {
-  "name": "Pizza Carbonara",
-  "description": "Pizza con mozzarella, bacon y salsa carbonara",
+  "username": "pedro",
+  "password": "test123"
+}
+```
+
+### Create Dish
+
+```json id="cr1k0x"
+{
+  "name": "Cheeseburger",
+  "description": "Double smash burger with cheddar",
   "price": 12.50,
   "available": true,
   "categoryId": 1
 }
 ```
 
-## Validation and error handling
+---
 
-The API includes:
+## What this project demonstrates
 
-* request validation with Jakarta Validation
-* global exception handling
-* clear JSON responses for validation errors
-* `404 Not Found` handling for missing resources
+This repository is intended to highlight skills relevant to junior backend developer positions:
 
-Example validation error:
+* object-oriented programming in Java
+* Spring Boot application structure
+* REST API development
+* PostgreSQL integration
+* authentication and password security
+* unit testing and debugging
+* building a project progressively with clean organization
 
-```json
-{
-  "categoryId": "must not be null"
-}
+---
+
+## Current Status
+
+Implemented:
+
+* category CRUD
+* dish CRUD
+* role creation and retrieval
+* user creation and retrieval
+* JPA relationships
+* validation and exception handling
+* service unit testing
+* Spring Security integration
+* BCrypt password hashing
+* JWT generation on login
+
+Planned improvements:
+
+* JWT validation in protected requests
+* role-based authorization
+* Swagger / OpenAPI documentation
+* Docker polish
+* deployment for public testing
+
+---
+
+## Running the Project
+
+```bash id="4r7mc5"
+mvn spring-boot:run
 ```
 
-## Project structure
+Database configuration is set through `application.properties`.
 
-```text
-src/main/java/com/restaurant/order/api
-├── controller
-├── dto
-│   ├── request
-│   └── response
-├── entity
-├── exceptions
-├── repository
-└── service
-```
-
-## How to run locally
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/PDJ-gtb/food-ordering-api.git
-cd food-ordering-api
-```
-
-### 2. Configure the database
-
-Set your PostgreSQL connection in `application.properties` or preferably through environment variables.
-
-Example properties:
-
-```properties
-spring.datasource.url=jdbc:postgresql://localhost:5432/restaurant_db
-spring.datasource.username=your_username
-spring.datasource.password=your_password
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
-```
-
-### 3. Run the application
-
-```bash
-./mvnw spring-boot:run
-```
-
-Or run it directly from IntelliJ.
-
-## Current status
-
-This project is still under active development.
-
-Next planned steps:
-
-* Spring Security
-* JWT authentication
-* roles and authorization
-* Flyway migrations
-* Docker and Docker Compose
-* testing with JUnit, Mockito and Testcontainers
-* Swagger / OpenAPI
-* CI/CD with GitHub Actions
-* AWS deployment
-
-## Goal of the project
-
-The goal of this repository is not only to practice Spring Boot, but to build a **production-style backend project** that reflects the structure, quality and features expected from a solid **Junior Java Backend Developer**.
+---
 
 ## Author
 
-Backend portfolio project by **PDJ-GTB**.
+Portfolio project developed by **Francisco de Jesús Gil**.
