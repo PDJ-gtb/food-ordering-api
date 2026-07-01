@@ -4,6 +4,7 @@ import com.restaurant.order.api.dto.request.AppUserRequest;
 import com.restaurant.order.api.dto.response.AppUserResponse;
 import com.restaurant.order.api.entity.AppUser;
 import com.restaurant.order.api.entity.Role;
+import com.restaurant.order.api.exceptions.DuplicateResourceException;
 import com.restaurant.order.api.exceptions.ResourceNotFoundException;
 import com.restaurant.order.api.repository.AppUserRepository;
 import com.restaurant.order.api.repository.RoleRepository;
@@ -27,10 +28,22 @@ public class AppUserService {
     }
 
     public AppUserResponse newUser(AppUserRequest appUserRequest){
+        checkDuplicateUser(appUserRequest);
+        checkDuplicateEmail(appUserRequest);
         AppUser createdUser = appUserRepository.save(fromRequestToAppUser(appUserRequest));
+
         return fromAppUserToResponse(createdUser);
 
     }
+
+    private void checkDuplicateEmail(AppUserRequest appUserRequest) {
+        if (appUserRepository.findByEmail(appUserRequest.getEmail()).isPresent()) {
+            throw new DuplicateResourceException("Email already exists");
+        }    }
+    private void checkDuplicateUser(AppUserRequest appUserRequest) {
+        if (appUserRepository.findByUsername(appUserRequest.getUsername()).isPresent()) {
+            throw new DuplicateResourceException("Username already exists");
+        }    }
 
     public List<AppUserResponse> getAllUsers(){
         List<AppUserResponse> userList = new ArrayList<>();
