@@ -300,6 +300,22 @@ Environment-specific configuration is managed through `application.properties`.
 An `application-example.properties` template is included to simplify project setup while keeping sensitive configuration out of version control.
 
 ---
+## Running with Docker
+
+The project can also be run in containers using **Docker Compose**, with both the Spring Boot application and PostgreSQL database included.
+
+### Build and start the containers
+
+```bash
+docker compose up --build
+```
+## Access the application
+API base URL: `http://localhost:8080`
+Swagger UI: `http://localhost:8080/swagger-ui/index.html`
+## Notes
+The application uses environment variables from docker-compose.yml for database configuration
+PostgreSQL runs in its own container
+Swagger is enabled for easier API exploration and testing
 
 ## Author
 
