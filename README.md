@@ -285,10 +285,10 @@ This repository showcases practical skills relevant to junior backend developmen
 - Role-based endpoint protection
 - Swagger / OpenAPI documentation
 - Docker optimization
+- Cloud deployment
 
 ### Planned Improvements
 
-- Cloud deployment
 - Integration testing
 - CI/CD pipeline
 
