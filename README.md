@@ -278,11 +278,11 @@ This repository showcases practical skills relevant to junior backend developmen
 - JWT authentication
 - JWT authorization filter
 - Role-based endpoint protection
+- Swagger / OpenAPI documentation
+- Docker optimization
 
 ### Planned Improvements
 
-- Swagger / OpenAPI documentation
-- Docker optimization
 - Cloud deployment
 - Integration testing
 - CI/CD pipeline
