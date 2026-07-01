@@ -16,6 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.http.HttpMethod;
 
 @Configuration
 @EnableWebSecurity
@@ -35,8 +36,16 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth.requestMatchers("/api/v1/auth/**").permitAll()
-                        .requestMatchers("/api/v1/dishes/**").hasAnyAuthority("CUSTOMER","ADMIN")
-                        .requestMatchers("/api/v1/categories/**").hasAnyAuthority("CUSTOMER","ADMIN")
+                        .requestMatchers(HttpMethod.GET,"/api/v1/dishes/**").hasAnyAuthority("CUSTOMER","ADMIN")
+                        .requestMatchers(HttpMethod.POST,"/api/v1/dishes/**").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE,"/api/v1/dishes/**").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.PUT,"/api/v1/dishes/**").hasAuthority("ADMIN")
+
+                        .requestMatchers(HttpMethod.GET,"/api/v1/categories/**").hasAnyAuthority("CUSTOMER","ADMIN")
+                        .requestMatchers(HttpMethod.POST,"/api/v1/categories/**").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE,"/api/v1/categories/**").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.PUT,"/api/v1/categories/**").hasAuthority("ADMIN")
+
                         .requestMatchers("/api/v1/users/**").hasAuthority("ADMIN")
                         .requestMatchers("/api/v1/roles/**").hasAuthority("ADMIN")
                         .requestMatchers("/swagger-ui/**").permitAll()
@@ -46,6 +55,7 @@ public class SecurityConfig {
 
                 )
                 .authenticationProvider(authenticationProvider()).addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+
 
         return http.build();
     }
