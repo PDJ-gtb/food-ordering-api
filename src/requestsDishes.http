@@ -8,8 +8,8 @@ GET http://localhost:8080/api/v1/dishes
 ###
 
 ### Get dish by id
-GET http://localhost:8080/api/v1/dishes/1
-
+GET http://localhost:8080/api/v1/dishes/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjdXN0b21lcjMiLCJpYXQiOjE3ODI5MDIzOTcsImV4cCI6MTc4MjkwNTk5N30.r95-_Rz_Tcvvh7FdxmiltUXmIDPkfAqgNLn1fGFUrRw
 ###
 
 ### Create dish - Pizza Carbonara

@@ -11,7 +11,6 @@ import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
 
-import static io.jsonwebtoken.Jwts.parser;
 
 @Service
 public class JwtService {
@@ -36,8 +35,7 @@ public class JwtService {
     }
 
     public boolean isTokenValid(String token, AppUser user){
-        Date date = new Date(System.currentTimeMillis());
-        if (extractUsername(token).equals(user.getUsername()) && (extractExpiration(token).after(date))){
+        if (extractUsername(token).equals(user.getUsername()) && !isTokenExpired(token)){
             return true;
         }
         return false;
@@ -55,11 +53,14 @@ public class JwtService {
        JwtParserBuilder parser= Jwts.parser();
 
        parser = parser.verifyWith(getSignInKey());
-      return parser.build().parseSignedClaims(token).getPayload();
-
-
-
-
+       return parser.build().parseSignedClaims(token).getPayload();
     }
+    private boolean isTokenExpired(String token){
+        Date date = new Date(System.currentTimeMillis());
 
+        if (extractExpiration(token).before(date)){
+            return true;
+        }
+        return false;
+    }
 }

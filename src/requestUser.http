@@ -12,9 +12,10 @@ Content-Type: application/json
 
 ### Get users
 GET http://localhost:8080/api/v1/users
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiaWF0IjoxNzgyODk4ODY4LCJleHAiOjE3ODI5MDI0Njh9.hSz88aKxDXSlD62gQX-BB9H_E0ZPWr5J1s4u2ahbj7M
 ###
 POST http://localhost:8080/api/v1/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiaWF0IjoxNzgyOTAxNzM2LCJleHAiOjE3ODI5MDUzMzZ9.mShjNZNAnr9feKUOAqK6c4Dz0vDOfxokC5SG3sfdHGs
 Content-Type: application/json
 
 {
@@ -23,4 +24,23 @@ Content-Type: application/json
   "password": "test123",
   "enabled": true,
   "roleIds": [1, 2]
+}
+
+### GET users
+GET http://localhost:8080/api/v1/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjdXN0b21lcjMiLCJpYXQiOjE3ODI5MDIzOTcsImV4cCI6MTc4MjkwNTk5N30.r95-_Rz_Tcvvh7FdxmiltUXmIDPkfAqgNLn1fGFUrRw
+
+###
+
+### POST user
+POST http://localhost:8080/api/v1/users
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjdXN0b21lcjIiLCJpYXQiOjE3ODI5MDIxNDcsImV4cCI6MTc4MjkwNTc0N30.OQp4qHbi4RBnqovoVf3A_nQ06KXd-lh6-5NN2LTvRTg
+
+{
+  "username": "customer3",
+  "email": "customer3@example.com",
+  "password": "customer",
+  "enabled": true,
+  "roleIds": [2]
 }
