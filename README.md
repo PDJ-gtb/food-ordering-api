@@ -1,3 +1,8 @@
+## Live Access
+
+- **Swagger UI:** `https://food-ordering-api-rntn.onrender.com/swagger-ui/index.html`
+
+The application is publicly deployed on Render and can be explored through Swagger UI.
 # Food Ordering API
 
 Backend portfolio project built with **Java**, **Spring Boot**, **PostgreSQL**, and **Spring Security**.
